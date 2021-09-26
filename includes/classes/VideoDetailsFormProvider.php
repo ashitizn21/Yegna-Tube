@@ -15,7 +15,7 @@
             $categoryInput = $this->createCategoryInput();
             $privacyInput = $this->createPrivacyInput();
             $uploadBtn = $this->createUploadButton();
-            return "<form action='processing.php' method='POST' class='p-4'>
+            return "<form action='processing.php' method='POST' class='p-4' enctype='multipart/form-data'>
                         $fileInput
                         $titleInput
                         $descriptionInput
