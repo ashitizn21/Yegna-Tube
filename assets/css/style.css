@@ -247,4 +247,8 @@ a:hover {
   font-size: 14px;
   font-weight: 400;
 }
+
+.errorMessage {
+  color: red;
+}
 /*# sourceMappingURL=style.css.map */

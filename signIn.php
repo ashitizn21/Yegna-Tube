@@ -1,5 +1,30 @@
 
-<?php require_once("includes/config.php"); ?>
+<?php require_once("includes/config.php"); 
+      require_once("includes/classes/Account.php");
+      require_once("includes/classes/FormInputSanitizer.php");
+      require_once("includes/classes/Constants.php");
+
+    $account = new Account($con);
+
+    if(isset($_POST['submitButton']))
+    {
+        $username = FormInputSanitizer::sanitizeUsernameInput($_POST['username']);
+        $password = FormInputSanitizer::sanitizePasswordInput($_POST['password']);
+
+        $wasSuccessful = $account->login($username, $password);
+
+        if($wasSuccessful){
+            $_SESSION['userLoggedIn'] = $username;
+            header('Location: index.php');
+        }
+    }
+
+    function getInputValue($name){
+        if(isset($_POST[$name])){
+            echo $_POST[$name];
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,9 +51,11 @@
             </div>
 
             <div class="loginForm">
-                <form action="signIn.php" method="GET">
-                    <input type="text" name="username" placeholder="Username" autocomplete="of" required>
-                    <input type="password" name="password" placeholder="Password" autocomplete="of" required>                   
+                <form action="signIn.php" method="post">
+                    <?php echo $account->getError(Constants::$loginFailed); ?>
+                    <input type="text" name="username" placeholder="Username" value="<?php getInputValue('username'); ?>"
+                     autocomplete="of" required>
+                    <input type="password" name="password" placeholder="Password"  autocomplete="of" required>                   
                     <input type="submit" value="SUBMIT" name="submitButton">
                 </form>
             </div>

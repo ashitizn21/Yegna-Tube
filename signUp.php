@@ -1,23 +1,36 @@
 
 <?php require_once("includes/config.php"); 
       require_once("includes/classes/FormInputSanitizer.php");
-    $errorArray = array();
-if($_SERVER['REQUEST_METHOD'] == "POST" & isset($_POST['submitButton']))
-{
-    $firstName = FormInputSanitizer::sanitizeNameInput($_POST['firstName']);
-    $lastName = FormInputSanitizer::sanitizeNameInput($_POST['lastName']);
-    $username = FormInputSanitizer::sanitizeUsernameInput($_POST['username']);
-    $email = FormInputSanitizer::sanitizeEmailInput($_POST['email']);
-    $confirmEmail = FormInputSanitizer::sanitizeEmailInput($_POST['confirmEmail']);
-    $password = FormInputSanitizer::sanitizePasswordInput($_POST['password']);
-    $confirmPassword = FormInputSanitizer::sanitizePasswordInput($_POST['confirmPassword']);
-    
-    // if()
-    
-}
+      require_once("includes/classes/Account.php");
+      require_once("includes/classes/Constants.php");
+
+    $account = new Account($con);
+    if($_SERVER['REQUEST_METHOD'] == "POST" & isset($_POST['submitButton']))
+    {
+        $firstName = FormInputSanitizer::sanitizeNameInput($_POST['firstName']);
+        $lastName = FormInputSanitizer::sanitizeNameInput($_POST['lastName']);
+        $username = FormInputSanitizer::sanitizeUsernameInput($_POST['username']);
+        $email = FormInputSanitizer::sanitizeEmailInput($_POST['email']);
+        $confirmEmail = FormInputSanitizer::sanitizeEmailInput($_POST['confirmEmail']);
+        $password = FormInputSanitizer::sanitizePasswordInput($_POST['password']);
+        $confirmPassword = FormInputSanitizer::sanitizePasswordInput($_POST['confirmPassword']);
+        
+        // if()
+        $wasSuccessful = $account->register($firstName, $lastName, $username, $email, $confirmEmail, $password, $confirmPassword);
+
+        if($wasSuccessful)
+        {   // Success signUp
+            $_SESSION["userLoggedIn"] = $username;
+            header('Location: index.php');
+        }
+    }
 
 
-
+    function getInputValue($name){
+        if(isset($_POST[$name])){
+            echo $_POST[$name];
+        }
+    }
 
 
 
@@ -52,13 +65,32 @@ if($_SERVER['REQUEST_METHOD'] == "POST" & isset($_POST['submitButton']))
 
             <div class="loginForm">
                 <form action="signUp.php" method="POST">
-                    <input type="text" name="firstName" placeholder="First Name" autocomplete="of" required>
-                    <input type="text" name="lastName" placeholder="Last Name" autocomplete="of" required>
-                    <input type="text" name="username" placeholder="Username" autocomplete="of" required>
-                    <input type="email" name="email" placeholder="Email" autocomplete="of" required>
-                    <input type="email" name="confirmEmail" placeholder="Confirm Email" autocomplete="of" required>
+                    <?php echo $account->getError(Constants::$firstNameCharacters);    ?>
+                    <input type="text" name="firstName" placeholder="First Name" value="<?php getInputValue('firstName'); ?>"
+                     autocomplete="of" required>
+                    <?php  echo $account->getError(Constants::$lastNameCharacters); ?>
+                    <input type="text" name="lastName" placeholder="Last Name" value="<?php getInputValue('lastName'); ?>"
+                     autocomplete="of" required>
+                    
+                    <?php echo $account->getError(Constants::$usernameCharacter); ?>
+                    <?php echo $account->getError(Constants::$takenUsername); ?>
+                    <input type="text" name="username" placeholder="Username" value="<?php getInputValue('username'); ?>"
+                     autocomplete="of" required>
+                    
+                    <?php echo $account->getError(Constants::$notMatchEmail); ?>
+                    <?php echo $account->getError(Constants::$emailInvalid); ?>
+                    <?php echo $account->getError(Constants::$takenEmail); ?>
+                    <input type="email" name="email" placeholder="Email" value="<?php getInputValue('email'); ?>" 
+                    autocomplete="of" required>
+                    <input type="email" name="confirmEmail" placeholder="Confirm Email" value="<?php getInputValue('confirmEmail'); ?>"
+                     autocomplete="of" required>
+                    
+                    <?php echo $account->getError(Constants::$passwordNotMatch); ?>
+                    <?php echo $account->getError(Constants::$passwordNotAlphaNumeric); ?>
+                    <?php echo $account->getError(Constants::$passwordLength); ?>
                     <input type="password" name="password" placeholder="Password" autocomplete="of" required>
                     <input type="password" name="confirmPassword" placeholder="Confirm Password" autocomplete="of" required>
+                   
                     <input type="submit" value="SUBMIT" name="submitButton">
                 </form>
             </div>
