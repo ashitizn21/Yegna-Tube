@@ -49,4 +49,4 @@
         </div>
 
         <div id="mainSectionContainer">
-            <div id="mainContentContanier">
+            <div id="mainContentContainer">
