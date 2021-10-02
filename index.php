@@ -1,11 +1,12 @@
-  <?php   require_once "includes/header.php";     ?>
+  <?php   
+    require_once "includes/header.php";     ?>
 
            Hello Yegna tube
   <?php
-    session_start();
+    
     if(isset($_SESSION['userLoggedIn']))
     {
-      echo "user is logged as ".$_SESSION['userLoggedIn'];
+      echo "user is logged as ". $userLoggedInObj->getUsername();
     }else
     {
       echo "\nNot Logged in\n";

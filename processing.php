@@ -2,6 +2,7 @@
 require_once("includes/header.php");
 require_once("includes/classes/VideoUploadData.php");
 require_once("includes/classes/VideoProcessor.php");
+require_once("includes/classes/User.php");
 
 if(!isset($_POST['uploadButton'])){
     echo "No file is sent!....";
@@ -15,7 +16,7 @@ $videoUploadData = new VideoUploadData($_FILES['fileInput'],
                                         $_POST['descriptionInput'],
                                         $_POST['categoryInput'],
                                         $_POST['privacyInput'],
-                                        "REPLACE-DUDE"
+                                        $userLoggedInObj->getUsername()
                                        );
 
 // 2) process data

@@ -1,8 +1,18 @@
+
+<?php  require_once("includes/config.php");   
+        require_once("includes/classes/User.php");
+        require_once("includes/classes/Video.php");
+
+
+    $usernameLoggedIn = isset($_SESSION['userLoggedIn']) ? $_SESSION['userLoggedIn'] : "";
+
+    $userLoggedInObj = new User($con, $usernameLoggedIn);
+
+
+?>
+
 <!DOCTYPE html>
-
-<?php  require_once("includes/config.php");     ?>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
