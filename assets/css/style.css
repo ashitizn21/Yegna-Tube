@@ -270,4 +270,31 @@ a:hover {
   padding-left: 24px;
   height: 100%;
 }
+
+.videoInfo {
+  width: 100%;
+  padding: 20px 0 8px 0;
+}
+
+.videoInfo h3 {
+  display: block;
+  overflow: hidden;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.videoInfo .P_infoBelowSection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.videoInfo .P_infoBelowSection .viewCount {
+  font-size: 16px;
+  color: rgba(17, 17, 17, 0.6);
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
 /*# sourceMappingURL=style.css.map */
