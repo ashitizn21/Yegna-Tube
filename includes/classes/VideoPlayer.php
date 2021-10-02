@@ -11,7 +11,12 @@ class VideoPlayer
 
     public function create($autoplay)
     {
-        $autoplay = $autoplay == true ? "autoplay" : "";
+        // $autoplay = $autoplay == true ? "autoplay" : "";
+        if($autoplay){
+            $autoplay = "autoplay";
+        }else{
+            $autoplay = "";
+        }
 
         $filePath = $this->video->getFilePath();
 

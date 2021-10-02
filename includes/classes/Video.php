@@ -20,10 +20,6 @@ class Video
             $this->sqlData = $query->fetch(PDO::FETCH_ASSOC);
         }
     }
-    public function getUsername()
-    {
-        return $this->userLoggedInObj->getUsername();
-    }
     public function getId()
     {
         return $this->sqlData['id'];
@@ -97,15 +93,10 @@ class Video
     public function like()
     {
         // return "am from ajax, video clas";
-        $username = $this->getUsername();
         $videoId = $this->getId();
-
-        $query = $this->con->prepare("SELECT * FROM likes WHERE username=:us AND videoId=:videoId");
-        $query->bindParam(":us", $username);
-        $query->bindParam(":videoId", $videoId);
-
-        $query->execute();
-        if($query->rowCount() > 0)
+        $username = $this->userLoggedInObj->getUsername();
+       
+        if($this->wasLikedBy())
         {   // already liked, so remove from like table
             $q_query = $this->con->prepare("DELETE FROM likes WHERE username=:us AND videoId=:videoId");
             $q_query->bindParam(":us", $username);
@@ -128,19 +119,86 @@ class Video
             $q_query->bindParam(":videoId", $videoId);
 
             $q_query->execute();
-
+            $count = $q_query->rowCount();
 
             $q_query = $this->con->prepare("INSERT INTO likes (username, videoId) VALUES(:us, :videoId)");
             $q_query->bindParam(":us", $username);
             $q_query->bindParam(":videoId", $videoId);
 
             $q_query->execute();
+
+            $result = array(
+                            "likes" => 1,
+                            "dislikes" => 0 - $count
+                            );
+
+            return json_encode($result);
+            
         }
 
     }
     public function dislike()
     {
-        $username = $this->getUsername();
+        $username = $this->userLoggedInObj->getUsername();
+        $videoId = $this->getId();
+        
+        if($this->wasDislikedBy())
+        {   // already liked, so remove from like table
+            $q_query = $this->con->prepare("DELETE FROM dislikes WHERE username=:us AND videoId=:videoId");
+            $q_query->bindParam(":us", $username);
+            $q_query->bindParam(":videoId", $videoId);
+
+            $q_query->execute();
+
+            $result =array(
+                "likes" => 0,
+                "dislikes" => -1
+            );
+
+            return json_encode($result);
+        }else
+        {   // not liked before,so insert into like table
+            $q_query = $this->con->prepare("DELETE FROM likes WHERE username=:us AND videoId=:videoId");
+            $q_query->bindParam(":us", $username);
+            $q_query->bindParam(":videoId", $videoId);
+
+            $q_query->execute();
+            $count = $q_query->rowCount();
+
+            $q_query = $this->con->prepare("INSERT INTO dislikes (username, videoId) VALUES(:us, :videoId)");
+            $q_query->bindParam(":us", $username);
+            $q_query->bindParam(":videoId", $videoId);
+
+            $q_query->execute();
+
+
+            $result = array(
+                "likes" => 0 - $count,
+                "dislikes" => 1
+                );
+
+            return json_encode($result);
+
+        }   
+    }
+
+    public function wasLikedBy()
+    {
+        $username = $this->userLoggedInObj->getUsername();
+        $videoId = $this->getId();
+
+        $query = $this->con->prepare("SELECT * FROM likes WHERE username=:us AND videoId=:videoId");
+        $query->bindParam(":us", $username);
+        $query->bindParam(":videoId", $videoId);
+
+        $query->execute();
+
+        return $query->rowCount() > 0;
+        
+    }
+    public function wasDislikedBy()
+    {
+        $username = $this->userLoggedInObj->getUsername();
         $videoId = $this->getId();
 
         $query = $this->con->prepare("SELECT * FROM dislikes WHERE username=:us AND videoId=:videoId");
@@ -148,21 +206,8 @@ class Video
         $query->bindParam(":videoId", $videoId);
 
         $query->execute();
-        if($query->rowCount() > 0)
-        {   // already liked, so remove from like table
-            $q_query = $this->con->prepare("DELETE FROM likes WHERE username=:us AND videoId=:videoId");
-            $q_query->bindParam(":us", $username);
-            $q_query->bindParam(":videoId", $videoId);
 
-            $q_query->execute();
-        }else
-        {   // not liked before,so insert into like table
-            $q_query = $this->con->prepare("INSERT INTO dislikes (username, videoId) VALUES(:us, :videoId)");
-            $q_query->bindParam(":us", $username);
-            $q_query->bindParam(":videoId", $videoId);
-
-            $q_query->execute();
-        }   
+        return $query->rowCount() > 0 ;
     }
 }
 

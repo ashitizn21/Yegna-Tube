@@ -4,7 +4,7 @@
         require_once("includes/classes/Video.php");
 
 
-    $usernameLoggedIn = isset($_SESSION['userLoggedIn']) ? $_SESSION['userLoggedIn'] : "";
+    $usernameLoggedIn = User::isLoggedIn() ? $_SESSION['userLoggedIn'] : "";
 
     $userLoggedInObj = new User($con, $usernameLoggedIn);
 
