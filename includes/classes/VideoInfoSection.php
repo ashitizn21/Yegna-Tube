@@ -29,14 +29,50 @@
                         <h3>$title</h3>
 
                         <div class='P_infoBelowSection'>
-                            <span class='viewCount'>$views</span>
+                            <span class='viewCount'>$views views</span>
                             $control
                         </div>
                     </div>";
         }
         private function createSecondaryInfo()
         {
+            $description = $this->video->getDescription();
+            $postedBy = $this->video->getUploadedBy();
+            $postDate = $this->video->getUploadDate();
+            $profilePic = ButtonProvider::createUserProfileButton($this->con, $postedBy);
+            
+          
+                // check if the user is who posted video  
+            if($postedBy == $this->userLoggedInObj->getUsername())
+            {     // can not subscribe to itself, but can edit video
+                $button = ButtonProvider::createEditVideoButton($this->video->getId());
+            }
+            else
+            {
+                $userToObject = new User($this->con, $postedBy);
+                $button = ButtonProvider::createSubscriberButton($this->con, $userToObject, $this->userLoggedInObj);
+            }
+            return "<div class='secondaryInfo'>
 
+                        <div class='topInfo'>
+                            $profilePic
+                            
+                            <div class='uploadInfo'>
+                                <span class='owner'>
+                                    <a href='profile.php?username=$postedBy'>
+                                        $postedBy
+                                    </a>
+                                 </span>
+
+                                 <span class='date'> Published on $postDate</span>
+                            </div>
+                                $button
+                        </div>
+
+                        <div class='descriptionContainer'>
+                            $description
+                        </div>
+                    </div>";
         }
     }
 

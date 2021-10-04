@@ -269,4 +269,78 @@ text-align: right;
     width: 20px;
     margin: 4px 8px 8px 8px;
 }
+
+.secondaryInfo .topInfo {
+  display: flex;
+  margin-bottom: 12px;
+}
+.secondaryInfo .topInfo .profilePicture {
+  height: 48px;
+  width: 48px;
+  margin-right: 16px;
+  border-radius: 50%;
+}
+.secondaryInfo .topInfo .uploadInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+.secondaryInfo .topInfo .uploadInfo .date {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(17, 17, 17, 0.6);
+  
+}
+
+.secondaryInfo .descriptionContainer {
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 64px;
+  max-width: 615px;
+  line-height: 21px;  
+}
+
+.secondaryInfo .topInfo .uploadInfo .owner a{
+  text-decoration: none;
+  font-size: 14px;
+  color: #000;
+  font-weight: 400;
+}
+.secondaryInfo {
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.secondaryInfo .topInfo .button {
+  padding: 6px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 3px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.secondaryInfo .topInfo .subscribeButtonContainer,
+.secondaryInfo .topInfo .editVideoButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.subscribeButtonContainer .subscribe {
+  background-color: #f00;
+  color: #fff;
+}
+
+.subscribeButtonContainer .unsubscribe {
+  background-color: #eee;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.editVideoButtonContainer .edit {
+  background-color: #2692e2;
+  color: #fff;
+}
 /*# sourceMappingURL=style.css.map */

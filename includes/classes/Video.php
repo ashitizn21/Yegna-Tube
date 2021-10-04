@@ -46,7 +46,8 @@ class Video
     }
     public function getUploadDate()
     {
-        return $this->sqlData['uploadDate'];
+        $date = $this->sqlData['uploadDate'];
+        return date("M j, Y", strtotime($date));
     }
     public function getViews()
     {
@@ -92,7 +93,7 @@ class Video
 
     public function like()
     {
-        // return "am from ajax, video clas";
+           // return "am from ajax, video clas";
         $videoId = $this->getId();
         $username = $this->userLoggedInObj->getUsername();
        
