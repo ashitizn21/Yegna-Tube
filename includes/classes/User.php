@@ -23,7 +23,7 @@
 
         public function getUsername()
         {
-            return $this->sqlData['username'];
+            return isset($this->sqlData['username']) ? $this->sqlData['username'] : "";
         }
         public function getFullName()
         {
@@ -39,7 +39,7 @@
         }
         public function getProfilPic()
         {
-            return $this->sqlData['profilePic'];
+            return isset($this->sqlData['profilePic']) ? $this->sqlData['profilePic'] : "";
         }
         public function getEmail()
         {

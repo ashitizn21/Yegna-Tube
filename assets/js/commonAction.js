@@ -11,4 +11,13 @@ $(document).ready(function(){
 
         main.toggleClass("leftPadding");
     })
+
+    // var videoContent = document.getElementById("videoContent");
+    // var actualVideoWidth = videoContent.videoWidth();
+    // var actualVideoHeight = videoContent.videoHeight();
+
+    // now check their sizes
+        // TODO:
+    // if() ...
+
 })

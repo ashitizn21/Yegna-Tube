@@ -1,5 +1,5 @@
 <?php
-    require_once("includes/classes/User.php");
+    // require_once("includes/classes/User.php");
 
     class ButtonProvider
     {
@@ -60,7 +60,7 @@
 
                return "<div class='subscribeButtonContainer'>
                             $button
-                        </button>";
+                        </div>";
         }
     }
 

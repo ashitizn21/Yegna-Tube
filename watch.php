@@ -3,6 +3,7 @@
     require_once("includes/classes/User.php");
     require_once("includes/classes/VideoPlayer.php");
     require_once("includes/classes/VideoInfoSection.php");
+    require_once("includes/classes/CommentSection.php");
 
     // echo $_GET['id'];
 
@@ -19,25 +20,32 @@
 ?>
 
 <script src="assets/js/videoPlayerAction.js"></script>
+<script src="assets/js/commentAction.js"></script>
 
 <div class="watchLeftColumn">
 
-<?php
+    <?php
 
-    $videoPlayer = new VideoPlayer($video);
+        $videoPlayer = new VideoPlayer($video);
 
-    echo $videoPlayer->create(true);
+        echo $videoPlayer->create(true);
 
-    // call videoInfoSection
-    $videoInfoSection = new videoInfoSection($con, $video, $userLoggedInObj);
+        // call videoInfoSection
+        $videoInfoSection = new videoInfoSection($con, $video, $userLoggedInObj);
 
-    echo $videoInfoSection->create();
+        echo $videoInfoSection->create();
 
-?>
+        $commentSection = new CommentSection($con, $video, $userLoggedInObj);
+
+        echo $commentSection->create();
+
+    ?>
 </div>
 
 <div class="suggestions">
-
+    <div class="sug">
+        <p>sdfghjkl,;.tfgyuiopuiuiuinsdfnkj</p>
+    </div>
 </div>
 
 <?php require_once("includes/footer.php"); ?>

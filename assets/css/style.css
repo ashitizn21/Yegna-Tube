@@ -413,4 +413,140 @@ a:hover {
   background-color: #2692e2;
   color: #fff;
 }
+
+.commentSection .headerComment {
+  margin: 24px 0 32px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.headerComment .commentForm .profilePicture,
+.commentSection .comment .profilePicture,
+.commentForm .profilePicture {
+  width: 48px;
+  height: 48px;
+  margin-right: 16px;
+  border-radius: 50%;
+}
+
+.headerComment .countComment {
+  margin-bottom: 24px;
+}
+
+.headerComment .commentForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.headerComment .commentForm textarea,
+.itemContainer .commentForm textarea {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  color: #111;
+  resize: none;
+}
+
+.itemContainer .commentForm textarea {
+  height: 30;
+}
+
+.headerComment .commentForm .postComment,
+.itemContainer .commentForm .postComment,
+.itemContainer .commentForm .cancelComment {
+  height: 36px;
+  background-color: #2692e6;
+  color: #fff;
+  font-weight: 500;
+  padding: 0 15px;
+  border: none;
+  border-radius: 3px;
+}
+
+.itemContainer .commentForm .cancelComment {
+  background-color: transparent;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.itemContainer .commentForm .cancelComment:hover {
+  color: #000;
+}
+
+.commentSection .itemContainer {
+  margin-bottom: 16px;
+}
+
+.commentSection .comment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.commentSection .commentHeader {
+  margin-bottom: 2px;
+}
+
+.commentSection .commentHeader .username {
+  margin-right: 8px;
+  color: #111;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.commentSection .comment .body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.itemContainer .control {
+  margin-left: 64px;
+}
+
+.itemContainer .control button,
+.itemContainer .control .likesCount {
+  border: none;
+  height: 32px;
+  background-color: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.itemContainer .control button {
+  cursor: pointer;
+}
+
+.itemContainer .control button img {
+  height: 16px;
+}
+
+.itemContainer .control .likesCount {
+  margin: 0 5px;
+}
+
+.itemContainer .commentForm .profilePicture {
+  width: 30px;
+  height: 30px;
+}
+
+.itemContainer .commentForm {
+  height: 30px;
+}
+
+.itemContainer .mainContainer .commentHeader .timeStamp {
+  line-height: 18px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+}
 /*# sourceMappingURL=style.css.map */
