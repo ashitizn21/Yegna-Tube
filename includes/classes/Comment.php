@@ -70,6 +70,7 @@
                         </div>
                     </div>
                     $commentOBJ
+                    $viewRepliesText
                 </div>";
     }
 
@@ -259,18 +260,18 @@
     {
         $videoId = $this->getVideoId();
         $id  = $this->getId();
-        $query = $this->con->prepare("SELECT * FROM comments WHERE videoId=:videoId AND responseTo=commentId ORDER BY datePosted ASC ");
+        $query = $this->con->prepare("SELECT * FROM comments WHERE videoId=:videoId AND responseTo=:commentId ORDER BY datePosted ASC ");
         $query->bindParam(":videoId", $videoId);
         $query->bindParam(":commentId", $id);
 
         $query->execute();
 
-        $commentARR = array();
+        $commentARR = "";
 
         while($row = $query->fetch(PDO::FETCH_ASSOC))
         {
-            $comment = new Comment($this->con, $this->userLoggedInObj, $videoId, $row);
-            array_push($commentARR, $comment);
+            $comment = new Comment($this->con, $this->userLoggedInOBJ, $videoId, $row);
+            $commentARR .= $comment->create(); 
         }
 
         return $commentARR;

@@ -9,7 +9,16 @@ function postComment(button, videoId, postedBy, replyTo, containerClass) {
         $.post("ajax/postComment.php", {videoId: videoId, postedBy: postedBy, 
                                         responseTo: replyTo, commentText: commentText})
         .done(function(data){
-            $("." + containerClass).prepend(data);
+
+            // alert(replyTo);
+            if(!replyTo)
+            {
+              $("." + containerClass).prepend(data);
+            } else
+            {
+              $(button).parent().siblings("." + containerClass).prepend(data);
+            }
+
         });
 
     } else
@@ -104,7 +113,10 @@ function updateLikesValue(element, num) {
 function getReplies(commentId, button, videoId)
 {
   $.post("ajax/getCommentReplies.php", {commentId: commentId, videoId:videoId})
-    .done(function()){
+    .done(function(comment){
 
-    }
+      var replies = $("<div>").addClass("repliesSection");
+      replies.append(comment);
+      $(button).replaceWith(replies);
+    });
 }

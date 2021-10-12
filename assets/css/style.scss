@@ -463,4 +463,15 @@ text-align: right;
 .hidden {
   display: none !important;
 }
+
+.comments .repliesSection {
+  padding-left: 64px;
+  margin-top: 16px;
+}
+
+.comments .itemContainer .viewReplies {
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
 /*# sourceMappingURL=style.css.map */

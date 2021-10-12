@@ -34,7 +34,7 @@
             <button class="navShowHide"> <img src="assets/images/icons/menu.png" alt=""> </button>
 
             <a href="index.php" class="logoContainer">
-                <img src="assets/images/yegnaTube2.jpg" title="logo" alt="site logo">
+                <img src="assets/images/yyegna.jpg" title="logo" alt="site logo">
             </a>
 
             <div class="searchBarContainer">
