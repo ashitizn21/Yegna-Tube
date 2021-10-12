@@ -4,7 +4,9 @@ body {
   padding: 0;
   margin: 0;
 }
-
+a {
+  text-decoration: none;
+}
 a:hover {
   text-decoration: none;
 }
@@ -129,7 +131,8 @@ a:hover {
   padding: 10px 30px;
   display: flex;
   flex: 1;
-
+  background-color: #fafafa;
+  box-sizing: border-box;
 }
 .column {
   flex-grow: 1;
@@ -363,7 +366,8 @@ text-align: right;
 .headerComment .countComment {
   margin-bottom: 24px;
 }
-.headerComment .commentForm {
+.headerComment .commentForm,
+.comment .itemContainer .commentForm {
   display: flex;
 }
 
@@ -378,7 +382,7 @@ text-align: right;
 }
 
 .itemContainer .commentForm textarea {
-  height: 30;
+  height: 30px;
 }
 
 .headerComment .commentForm .postComment,
@@ -455,5 +459,8 @@ text-align: right;
   font-size: 13px;
   font-weight: 400;
   color: #888;
+}
+.hidden {
+  display: none !important;
 }
 /*# sourceMappingURL=style.css.map */

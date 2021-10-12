@@ -17,7 +17,6 @@
         }
         private function createCommentSection()
         {
-            echo "from comment";
             $commentNO = $this->video->getNumberOfComment();
             $postedBy = $this->userLoggedInOBJ->getUsername();
             $videoId = $this->video->getId();
@@ -27,8 +26,12 @@
 
             $commentButton = ButtonProvider::createButton("COMMENT", null, $commentAction, "postComment");
 
-            // echo $profilePicture;
-                // get here html
+            $comments = $this->video->getComments();
+            $commentHtml = "";
+            foreach($comments as $comment_ttt )
+            {
+                $commentHtml .= $comment_ttt->create();
+            }
             
             return "<div class='commentSection'>
                         <div class='headerComment'>
@@ -42,7 +45,7 @@
                         </div>
 
                         <div class='comments'>
-
+                            $commentHtml
                         </div>
                     </div>";
         }

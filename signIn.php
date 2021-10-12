@@ -45,7 +45,7 @@
     <div class="signInContainer">
         <div class="column">
             <div class="header">
-                <img src="assets/images/photo_2021-07-27_01-09-48.jpg" title="logo" alt="site logo">
+                <img src="assets/images/yegnaTube2.jpg" title="logo" alt="site logo">
                 <h3>Sign In </h3>
                 <span>to continue to YEGNA TUBE</span>
             </div>

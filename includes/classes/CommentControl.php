@@ -38,9 +38,9 @@ class CommentControl
     private function createLikesCount()
     {
         $text = $this->comment->getLikes();
-        if($text == 0) $text = "";
+        if($text == 0) $text = 0 ;
         return "<span class='likesCount'>
-                $text
+                $text 
                 </span>";
     }
     private function createReplySection()
@@ -72,7 +72,7 @@ class CommentControl
     {
         $videoId = $this->comment->getVideoId();   // look at this    //  
         $commentId = $this->comment->getId();
-        $action = "likeVideo($commentId, this, $videoId)";
+        $action = "likeComment($commentId, this, $videoId)";
         $class = "likeButton";
 
         $imageSrc = "assets/images/icons/thumb-up.png";
@@ -86,7 +86,7 @@ class CommentControl
     {
         $commentId = $this->comment->getId();
         $videoId = $this->comment->getVideoId();
-        $action = "dislikeVideo($commentId, this, $videoId)";
+        $action = "dislikeComment($commentId, this, $videoId)";
         $class = "dislikeButton";
 
         $imageSrc = "assets/images/icons/thumb-down.png";
