@@ -14,9 +14,8 @@
 
     $video = new Video($con, $_GET['id'], $userLoggedInObj);
   
-    // $video->increamentViews();   // increament function
+    $video->increamentViews();   // increament function
 
-    // echo $video->getViews();
 ?>
 
 <script src="assets/js/videoPlayerAction.js"></script>
@@ -43,9 +42,12 @@
 </div>
 
 <div class="suggestions">
-    <div class="sug">
-        <p>sdfghjkl,;.tfgyuiopuiuiuinsdfnkj</p>
-    </div>
+    
+    <?php
+    
+        $videoSysGrid = new VideoSgsGrid($con, $userLoggedInObj);
+        echo $videoSysGrid->create(null, null, false);
+    ?>
 </div>
 
 <?php require_once("includes/footer.php"); ?>
